@@ -6,10 +6,16 @@
                 :key="todo.id"
                 :todo="todo"/>
     </ul>
+
+    <form @submit.prevent="addTodo(todoName)">
+      <input type="text" v-model="todoName">
+      <button type="submit">Submit</button>
+    </form>
   </div>
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid';
 import TodoItem from './TodoItem.vue';
 
 export default {
@@ -24,6 +30,12 @@ export default {
         { id: 3, name: 'Learn about VueJS' },
       ],
     };
+  },
+  methods: {
+    addTodo(name) {
+      this.todos = [...this.todos, { id: uuidv4(), name }];
+      return this.todos;
+    },
   },
 };
 </script>
