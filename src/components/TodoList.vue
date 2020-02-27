@@ -7,20 +7,19 @@
                 :todo="todo"/>
     </ul>
 
-    <form @submit.prevent="addTodo(todoName)">
-      <input type="text" v-model="todoName">
-      <button type="submit">Submit</button>
-    </form>
+    <TodoInput @addTodo="addTodo($event)"/>
   </div>
 </template>
 
 <script>
 import { v4 as uuidv4 } from 'uuid';
 import TodoItem from './TodoItem.vue';
+import TodoInput from './TodoInput.vue';
 
 export default {
   components: {
     TodoItem,
+    TodoInput,
   },
   data() {
     return {

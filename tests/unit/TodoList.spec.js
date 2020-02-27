@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import TodoList from '../../src/components/TodoList.vue';
 import TodoItem from '../../src/components/TodoItem.vue';
+import TodoInput from '../../src/components/TodoInput';
 
 describe('TodoList.vue', () => {
   it('should contain a list of Todo items', () => {
@@ -49,5 +50,13 @@ describe('TodoList.vue', () => {
     wrapper.find('form').trigger('submit', 'Clear the car');
 
     expect(wrapper.vm.addTodo).toHaveBeenCalled();
+  });
+
+  it('should add an item to the todolist when the addTodo event happens', () => {
+    const wrapper = mount(TodoList);
+    const { todos } = wrapper.vm;
+    wrapper.find(TodoInput).vm.$emit('addTodo', 'Clean the car');
+    const newTodos = wrapper.vm.todos;
+    expect(todos.length).toBeLessThan(newTodos.length);
   });
 });
