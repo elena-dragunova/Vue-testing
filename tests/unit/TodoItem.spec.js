@@ -9,5 +9,5 @@ describe('TodoItem.vue', () => {
     const liWrapper = wrapper.find('li').text();
 
     expect(liWrapper).toBe(todo.name);
-  })
+  });
 });

@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils';
 import TodoList from '../../src/components/TodoList.vue';
 import TodoItem from '../../src/components/TodoItem.vue';
-import TodoInput from '../../src/components/TodoInput';
+import TodoInput from '../../src/components/TodoInput.vue';
 
 describe('TodoList.vue', () => {
   it('should contain a list of Todo items', () => {
-    const todos =[{ id: 1, name: 'Wash the dishes' }];
+    const todos = [{ id: 1, name: 'Wash the dishes' }];
     const wrapper = mount(TodoList, {
       data() {
         return {
@@ -30,6 +30,7 @@ describe('TodoList.vue', () => {
     const wrapper = mount(TodoList);
     const newTodos = wrapper.vm.addTodo('Go to work');
 
+    // eslint-disable-next-line array-callback-return
     newTodos.map((item) => {
       expect(item.id).toBeTruthy();
     });
@@ -46,6 +47,7 @@ describe('TodoList.vue', () => {
 
   it('should call addTodo when form is submitted', () => {
     const wrapper = mount(TodoList);
+    // eslint-disable-next-line no-unused-vars
     const spy = jest.spyOn(wrapper.vm, 'addTodo');
     wrapper.find('form').trigger('submit', 'Clear the car');
 
